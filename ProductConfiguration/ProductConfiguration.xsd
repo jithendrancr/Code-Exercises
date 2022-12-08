@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="http://www.Retalix.com/Extensions" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.Retalix.com/Extensions" elementFormDefault="qualified"
+	attributeFormDefault="unqualified">
+  <xs:include schemaLocation="../Common/ServiceAbstractV1.0.0.xsd"/>
+  <xs:include schemaLocation="../../Core/Common/ActionTypeCodes.xsd"/>
+  <xs:element name="ProductConfigurationMaintenanceRequest" type="ProductConfigurationMaintenanceRequest"/>
+  <xs:element name="ProductConfigurationMaintenanceResponse" type="ProductConfigurationMaintenanceResponse"/>
+
+  <xs:element name="ProductConfigurationLookupRequest" type="ProductConfigurationLookupRequest"/>
+  <xs:element name="ProductConfigurationLookupResponse" type="ProductConfigurationLookupResponse"/>
+
+  <xs:complexType name="ProductConfigurationLookupRequest">
+    <xs:complexContent>
+      <xs:extension base="ServiceRequestBaseType">
+        <xs:sequence>
+          <xs:element name="Id" type="xs:int" />
+          <xs:element name="Code" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ProductConfigurationLookupResponse">
+    <xs:complexContent>
+      <xs:extension base="ServiceResponseBaseType">
+        <xs:sequence>
+          <xs:element name="ProductConfigurationType" type="ProductConfigurationType"  minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ProductConfigurationMaintenanceRequest">
+    <xs:complexContent>
+      <xs:extension base="ServiceRequestBaseType">
+        <xs:sequence>
+          <xs:element name="ProductConfigurationType" type="ProductConfigurationType" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+
+  <xs:complexType name="ProductConfigurationType">
+    <xs:sequence>
+      <xs:element name="Id" type="xs:int" minOccurs="0"/>
+      <xs:element name="Code" type="xs:string" minOccurs="0"/>
+      <xs:element name="Description" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="Action" type="ActionTypeCodes"/>
+  </xs:complexType>
+
+  <xs:complexType name="ProductConfigurationMaintenanceResponse">
+    <xs:complexContent>
+      <xs:extension base="ServiceResponseBaseType">
+        <xs:sequence>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  
+
+</xs:schema>
